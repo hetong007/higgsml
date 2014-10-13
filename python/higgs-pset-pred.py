@@ -7,16 +7,22 @@ sys.path.append("../xgboost/wrapper/")
 import xgboost as xgb
 import physics as phy
 
+if len(sys.argv) < 4:
+    print 'Usage: <test.csv> <model.dat> <submission.csv>'
+    exit(-1)
+
+dpath_test = sys.argv[1]
+dpath_model = sys.argv[2]
+dpath_result = sys.argv[3]
+
 lc = 0.5
 test_size = 550000
-modelfile = sys.argv[1]
 threshold_ratio = 0.15
 outfile = sys.argv[1].rsplit('.',1)[0]+".csv"
 print outfile
 # path to where the data lies
-dpath = '../data/'
 
-idx, dtest, punit, pset = phy.load_test(dpath+'/test.csv')
+idx, dtest, punit, pset = phy.load_test(dpath_test)
 # list of features that we want
 features = set(['E_inv', 'E_tri', 'm_tri', 'm_inv', 'pts', 'p_x', 'p_y', 'p_z'])
 
@@ -29,8 +35,8 @@ print 'finish making features, shape=%s' % str(dtest.shape)
 
 # print weight statistics 
 xgmat = xgb.DMatrix(dtest, missing = -999.0)
-bst = xgb.Booster({'nthread':16})
-bst.load_model( modelfile )
+bst = xgb.Booster()
+bst.load_model(dpath_model)
 ypred = bst.predict( xgmat )
 
 res  = [ ( int(idx[i]), ypred[i] ) for i in range(len(ypred)) ] 
@@ -39,7 +45,7 @@ for k, v in sorted( res, key = lambda x:-x[1] ):
     rorder[ k ] = len(rorder) + 1
 # write out predictions
 ntop = int( threshold_ratio * len(rorder ) )
-fo = open(outfile, 'w')
+fo = open(dpath_result, 'w')
 nhit = 0
 ntot = 0
 fo.write('EventId,RankOrder,Class\n')
@@ -54,5 +60,3 @@ for k, v in res:
     ntot += 1
 fo.close()
 print ('finished writing into prediction file')
-
-

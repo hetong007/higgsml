@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 echo "::: higgs-ml [prediction]..."
 echo "::: args:" $@
@@ -7,7 +7,7 @@ in=$1
 trained=$2
 out=$3
 
-python higgsml-simplest.py $in $trained $out || exit 1
+python python/higgs-pset-pred.py $in $trained $out || exit 1
 
 echo "::: higgs-ml [prediction]... [ok]"
 exit 0

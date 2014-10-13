@@ -7,23 +7,20 @@ sys.path.append("../xgboost/wrapper/")
 import xgboost as xgb
 import physics as phy
 
-if len(sys.argv) > 2:
-    eta = float(sys.argv[1])
-    nround = int(sys.argv[2])
-else:
-    eta = 0.01
-    nround = 3000
+if len(sys.argv) < 3:
+    print 'Usage: <train.csv> <model.dat>'
+    exit(-1)
 
+dpath_train = sys.argv[1]
+dpath_model = sys.argv[2]
+
+eta = 0.01
+nround = 3000
 lc = 0.5
 test_size = 550000
 
-# path to where the data lies
-dpath = '../data/'
-
-label, dtrain, weight, punit, pset = phy.load_train(dpath+'/training.csv')
+label, dtrain, weight, punit, pset = phy.load_train(dpath_train)
 # list of features that we want
-
-
 features = set(['E_inv', 'E_tri', 'm_tri', 'm_inv', 'pts', 'p_x', 'p_y', 'p_z'])
 # use all features without met for now
 dextra = phy.mkf_pset([p for p in pset], features)
@@ -56,7 +53,6 @@ param['eval_metric'] = 'auc'
 param['silent'] = 1
 param['bst:min_child_weight'] = 100
 param['bst:max_depth'] = 9
-param['nthread'] = 8
 param['bst:col_samplebytree'] = lc
 param['bst:gamma']=0.1
 
@@ -68,5 +64,5 @@ watchlist = [ (xgmat,'train') ]
 print ('loading data end, start to boost trees')
 bst = xgb.train( param, xgmat, num_round, watchlist );
 # save out model
-bst.save_model('higgs-pset.r%de%glc%g.model' % (num_round, eta*100, lc *100))
-print ('finish training')
+bst.save_model(dpath_model)
+
