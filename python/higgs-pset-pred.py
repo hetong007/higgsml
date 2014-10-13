@@ -3,9 +3,7 @@ import os
 import sys
 import numpy as np
 import inspect
-code_path = os.path.join(
-    os.path.split(inspect.getfile(inspect.currentframe()))[0], "../xgboost/wrapper")
-sys.path.append(code_path)
+sys.path.append(os.path.dirname(__file__)+"../xgboost/wrapper")
 import xgboost as xgb
 import physics as phy
 
