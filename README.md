@@ -16,4 +16,4 @@ Notes
    - colsampleby_tree is set to 0.5, every iteration we randomly pick half of features to construct the tree, this speedup training, and sometimes helps avoid overfitting
    - gamma is set to 0.1, this is a prunning parameter, we didn't tune it carefully, but leaving it nonzero do helps, because the trees in later phase will tends to be simpler, making the boosting less easy to overfit
 
-On a laptop with an 8-thread i7 CPU, this model will run in less than an hour with less than 2GB memory.
+On a laptop with an 8-thread i7 CPU, this model will be trained in around an hour with less than 2GB memory. The evaluation step will cost 3.5GB memory in 80 seconds.
