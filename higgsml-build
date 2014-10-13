@@ -1,5 +1,5 @@
 #!/bin/bash
 echo "::: higgs-ml [build]..."
-cd xgboost; bash build.sh; cd -
+cd xgboost; bash build.sh; cp wrapper/libxgboostwrapper.so wrapper/xgboost.py ../python;cd -
 echo "::: higgs-ml [build]... [ok]"
 exit 0

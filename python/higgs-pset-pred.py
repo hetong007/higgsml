@@ -2,8 +2,6 @@
 import os
 import sys
 import numpy as np
-import inspect
-sys.path.append(os.path.dirname(__file__)+"../xgboost/wrapper")
 import xgboost as xgb
 import physics as phy
 
