@@ -9,7 +9,7 @@ We integrate some physical features with the original features, then feed the ne
 
 Notes
 ======
-* The major physics features we add is the sum momentum, invariant mass, energy of arbitary subset of {lep, tau, jet_leading, jet_subleading}
+* The major physics features we add is the sum momentum, invariant mass, energy of arbitary subset of {lep, tau, jet_leading, jet_subleading}. We also include consideration met, with sum of these quantities only considering x,y plain.
 * We adjust several parameters to avoid overfitting
    - eta is set to small value 0.01, which usually needs more rounds to converge, but make results more stable
    - min_child_weight is set to 100, which mean each leaf value requires at least 900 sum of weights, making leave weight estimation more stable
