@@ -1,0 +1,5 @@
+#!/bin/bash
+echo "::: higgs-ml [build]..."
+cd xgboost; bash build.sh; cd -
+echo "::: higgs-ml [build]... [ok]"
+exit 0
