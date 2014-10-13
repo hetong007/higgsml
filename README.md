@@ -5,7 +5,7 @@ This model is created by [Tianqi Chen](https://github.com/tqchen) and [Tong He](
 
 This model achieved the best private score among all of our models without ensemble learning. The scores for public board and private board are 3.72181 and 3.72370 respectively. 
 
-We integrate some physical features with the original features, then feed the new dataset to [xgboost](https://github.com/tqchen/xgboost) for training and prediction.
+We integrate some physical features with the original features, then feed the new dataset to [xgboost](https://github.com/tqchen/xgboost), which is mainly authored by Tianqi, for training and prediction.
 
 Notes
 ======
