@@ -2,8 +2,10 @@
 import os
 import sys
 import numpy as np
-# add path of xgboost python module
-sys.path.append("../xgboost/wrapper/")
+import inspect
+code_path = os.path.join(
+    os.path.split(inspect.getfile(inspect.currentframe()))[0], "../xgboost/wrapper")
+sys.path.append(code_path)
 import xgboost as xgb
 import physics as phy
 
