@@ -1,0 +1,13 @@
+#!/bin/sh
+
+echo "::: higgs-ml [prediction]..."
+echo "::: args:" $@
+
+in=$1
+trained=$2
+out=$3
+
+python higgsml-simplest.py $in $trained $out || exit 1
+
+echo "::: higgs-ml [prediction]... [ok]"
+exit 0

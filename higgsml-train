@@ -1,0 +1,12 @@
+#!/bin/sh
+
+echo "::: higgs-ml [training]..."
+echo "::: args:" $@
+
+in=$1
+out=$2
+
+python higgsml-simplest.py --train $in $out || exit 1
+
+echo "::: higgs-ml [training]... [ok]"
+exit 0
