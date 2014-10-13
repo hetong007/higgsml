@@ -1,4 +1,4 @@
-Higgs Machine Learning Competition model submission
+Higgs Machine Learning Model
 =======
 
 This model is created by [Tianqi Chen](https://github.com/tqchen) and [Tong He](https://github.com/hetong007).
